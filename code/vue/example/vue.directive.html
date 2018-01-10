@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue.directive 自定义指令</title>
+  <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+  <h1>vue.directive 自定义指令</h1>
+  <hr>
+  <div id="app">
+    <div v-wikihong = "color">{{ num }}</div>
+    <button @click="add">ADD</button>
+  </div>
+  <p>
+    <!-- 解绑后就用vue方法了 -->
+    <button onclick="unbind()">解绑</button>
+  </p>
+  <script>
+    // 自定义指令
+    // Vue.directive('wikihong', function (el, binding) {
+      // console.log('el:' + el);
+      // console.log('binding:' + binding);
+      // console.log('binding.name:' + binding.name);
+      // console.log('binding.expression:' + binding.expression)
+      // el.style = "color:" + binding.value
+    // })
+    function unbind() {
+      app.$destroy();
+    }
+    // 自定义指令-生命周期(钩子函数)
+    Vue.directive('wikihong', {
+      //绑定
+      bind: function ( el, binding ) { 
+        console.log('1-bind');
+        el.style = "color:" + binding.value
+      },
+      //绑定到节点
+      inserted: function () { 
+        console.log('2-inserted');
+      },
+      //组件更新
+      update: function () { 
+        console.log('3-update');
+      },
+      //组件更新完成
+      componentUpdated: function () { 
+        console.log('4-componentUpdated');
+      },
+      //解绑
+      unbind: function () { 
+        console.log('5-unbind');
+      }
+    });
+    var app = new Vue({
+      el: '#app',
+      data: {
+        num: 10,
+        color: 'green'
+      },
+      methods: {
+        add: function () {
+          this.num++;
+        }
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+document.write('<h1>hello wikiHong</h1>')

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>slot method</title>
+  <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+  <h1>slot method</h1>
+  <hr>
+  <div id="app">
+    <wikihong>
+      <!-- 1. 传值 -->
+      <span slot="bolgUrl">{{ wikihongData.bolgUrl }}</span>
+      <span slot="netName">{{ wikihongData.netName }}</span>
+      <span slot="skill">{{ wikihongData.skill }}</span>
+    </wikihong>
+  </div>
+<template id="tep">
+  <div>
+    <!-- 2. 接收值 -->
+      <p>博客地址:<slot name="bolgUrl"></slot></p>
+      <p>网名:<slot name="netName"></slot></p>
+      <p>所会技术:<slot name="skill"></slot></p>
+  </div>
+</template>
+  <script>
+    var wikihong = {
+      template: '#tep'
+    }
+    var app = new Vue({
+      el: '#app',
+      data: {
+        wikihongData: {
+          bolgUrl: 'http://jspang.com',
+          netName: 'wikihong',
+          skill: 'web前端'
+        }
+      },
+      components: {
+        'wikihong': wikihong
+      }
+    })
+  </script>
+</body>
+</html>

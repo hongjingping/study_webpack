@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mixins option</title>
+  <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+  <h1>Mixins option</h1>
+  <hr>
+  <div id="app">
+    {{ num }}
+    <p><button @click="add()">add</button></p>
+  </div>
+
+  <script>
+    // 2.vue都是混入的先执行，原生的后执行
+    var addConsole = {
+      // 1.updated生命周期
+      updated: function () {
+        console.log('数据发生变化' + this.num );
+      }
+    };
+    // 全局的api最先执行
+    Vue.mixin({
+      updated: function () {
+        console.log('我是全局的混入');
+      }
+    });
+    var app = new Vue({
+      el: '#app',
+      data: {
+        num: 1
+      },
+      methods: {
+        add: function () {
+          this.num++;
+        }
+      },
+      updated: function () {
+        console.log('我是原生的updated');
+      },
+      // 混入
+      mixins: [ addConsole ]
+    })
+  </script>
+</body>
+</html>

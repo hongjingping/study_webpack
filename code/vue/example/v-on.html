@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>v-on 实例</title>
+  <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+  <h1>v-on 实例</h1>
+  <hr>
+  <div id="app">
+    本场比赛得分:{{ grade }}
+    <p>
+      <button v-on:click="addGrade()">加分</button>
+      <button @click="removeGrade()">减分</button>
+      <input type="text" v-on:keyup.enter="onEnter()" v-model="grade">
+    </p>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        grade: 0,
+        grade2: 1
+      },
+      methods: {
+        addGrade: function () {
+          this.grade++;
+        },
+        removeGrade: function () {
+          this.grade--;
+        },
+        onEnter: function () {
+          this.grade = this.grade + parseInt(this.grade2);
+        }
+      }
+    })
+  </script>
+</body>
+</html>

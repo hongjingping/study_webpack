@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>computed Option</title>
+  <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+  <h1>computed Option</h1>
+  <hr>
+  <div id="app">
+    <p>{{ newPrice }}</p>
+    <div>
+      <ul>
+        <li v-for="item in reverNews">{{ item.title }}-{{ item.age}}-{{item.date}}</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    var newList = [
+      { title: 'Ivan jiao from eastNorth1', age: '35', date: '2017.09.04'},
+      { title: 'Ivan jiao from eastNorth2', age: '35', date: '2017.09.03'},
+      { title: 'Ivan jiao from eastNorth3', age: '35', date: '2017.09.08'},
+      { title: 'Ivan jiao from eastNorth4', age: '35', date: '2017.09.05'}
+    ];
+    var app = new Vue({
+      el: '#app',
+      data: {
+        price: 100,
+        newList: newList
+      },
+      computed: {
+        newPrice: function () {
+          return this.price = '￥' + this.price + '元'
+        },
+        reverNews: function () {
+          return this.newList.reverse()
+        }
+      }
+    })
+  </script>
+</body>
+</html>

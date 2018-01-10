@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>component-1</title>
+  <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+  <h1>component-1</h1>
+  <hr>
+  <div id="app">
+    <kitty></kitty>
+  </div>
+
+  <script>
+    // 在外面申明我们的局部组件,父组件引用子组件
+   var cityComponent = {
+     template: '<div style="color: green"> eastNorth of China!!!</div>'
+   }
+   var kittyComponent = {
+     template: `<div style="color: red"> wikiHong from China!!!<city></city></div>`,
+     components: {
+       'city': cityComponent
+     }
+   }
+   
+    var app = new Vue({
+      el: '#app',
+      components: {
+        // 引用的标签:申明的标签
+        'kitty': kittyComponent
+      },
+    })
+    
+  </script>
+</body>
+</html>

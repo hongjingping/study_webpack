@@ -1,0 +1,39 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>component-2 props属性设置</title>
+      <script src="../assets/js/vue.js"></script>
+    </head>
+    <body>
+      <h1>component-2 props属性设置</h1>
+      <hr>
+      <div id="app">
+        <kitty here= 'New York'></kitty>
+        <kitty from-here= 'China'></kitty>
+        <kitty :there= 'message'></kitty>
+        <kitty here= 'New York' from-here= 'China' v-bind:there= 'message' :there2= 'msg'></kitty>
+      </div>
+    
+      <script>
+        var app = new Vue({
+          el: '#app',
+          data: {
+            message: 'eastNorth',
+            msg: 'sichuang'
+          },
+          components: {
+            'kitty': {
+              template: `<h1 style="color: green">kitty from {{ here }}, Mr.fang from {{ fromHere }}, ivan jiao from {{ there }},heping from {{ there2 }}</h1>`,
+              // 挂在选项（'-'要变成小驼峰命名）
+              props: ['here', 'fromHere', 'there', 'there2']
+            }
+          } 
+        })
+        
+      </script>
+    </body>
+    </html>

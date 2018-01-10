@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>$mounted methods</title>
+  <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+  <h1>$mounted methods</h1>
+  <hr>
+  <div id="app"></div>
+  <p><button onclick="destory()">销毁</button></p>
+  <p><button onclick="reload()">刷新</button></p>
+  <p><button onclick="nextTick()">更改</button></p>
+  <script>
+    var wikiHong = Vue.extend({
+      template: '<p>{{ message }}</p>',
+      data: function () {
+        return {
+          message: 'hello, I am wikiHong!'
+        }
+      },
+      // 2.
+      mounted: function () {
+        console.log('mounted被创建');
+      },
+      destroyed: function () {
+        console.log('destroyed 销毁之后')
+      },
+      updated: function () {
+        console.log('updated 更新之后')
+      }
+    });
+    // 1. 挂载
+    var vm = new wikiHong().$mount('#app');
+    // 2.数据修改
+    function destory() {
+      vm.$destroy();
+    }
+    // 3.更新方法
+    function reload() {
+      vm.$forceUpdate();
+    }
+    // 4.数据修改
+    function nextTick() {
+      vm.message='update message info';
+      vm.$nextTick(function () {
+        console.log('message 更新完后我被调用了');
+      })
+    }
+  </script>
+</body>
+</html>

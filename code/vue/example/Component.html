@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>component-1</title>
+  <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+  <h1>component-1</h1>
+  <hr>
+  <div id="app">
+    <wikihong></wikihong>
+    <kitty></kitty>
+  </div>
+  <!-- 指令定义的是标签属性，组件定义的标签 -->
+
+  <script>
+    // 全局的组件
+    Vue.component('wikihong', {
+      template: `<h1 style="color: pink">我是全局的wikihong组件</h1>`
+    })
+    var app = new Vue({
+      el: '#app',
+      // 局部的组件
+      components: {
+        'kitty': {
+          template: `<h1 style="color: green">我是局部的kitty组件</h1>`
+        }
+      } 
+    })
+    
+  </script>
+</body>
+</html>
